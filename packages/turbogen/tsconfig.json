@@ -1,0 +1,17 @@
+{
+  "extends": "@turbogen/tsconfig/cli-pkg.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.mjs",
+    "**/*.js",
+    "tsup.config.ts",
+    "../../reset.d.ts"
+  ],
+  "exclude": ["dist"]
+}

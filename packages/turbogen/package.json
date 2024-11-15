@@ -81,22 +81,17 @@
     "@turbogen/tsconfig": "workspace:*",
     "@types/gradient-string": "^1.1.6",
     "@types/node": "^22.9.0",
-    "@types/react": "^18.3.12",
     "chokidar": "^4.0.1",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
     "dotenv-expand": "^11.0.7",
     "eslint": "^9.15.0",
-    "fast-xml-parser": "^4.5.0",
-    "next": "latest",
     "prettier": "^3.3.3",
-    "react": "^18.3.1",
     "terser": "^5.36.0",
-    "tslib": "^2.8.1",
+    "tslib": "latest",
     "tsup": "latest",
     "tsx": "latest",
-    "typescript": "latest",
-    "yaml": "^2.6.0"
+    "typescript": "latest"
   },
-  "prettier": "@takeda-digital/prettier-config"
+  "prettier": "@turbogen/prettier-config"
 }
