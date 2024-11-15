@@ -1,0 +1,86 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "clean": {
+      "cache": false
+    }
+  },
+  "ui": "stream",
+  "globalEnv": [
+    "ACCESS_KEY",
+    "API_BASE_URL",
+    "APOLLO_GRAPH_SCHEMA",
+    "APOLLO_GRAPH_VARIANT",
+    "APOLLO_KEY",
+    "APOLLO_SCHEMA_REPORTING",
+    "AWS_INSTANCE_PASSWORD",
+    "AWS_INSTANCE_USERNAME",
+    "BLOB_READ_WRITE_TOKEN",
+    "BUCKET_NAME",
+    "GRAPHQL_JWT_AUTH_SECRET_KEY",
+    "HEADLESS_SECRET",
+    "MAILGUN_API_KEY",
+    "MAILGUN_DOMAIN",
+    "MAILGUN_PRIVATE_API_KEY",
+    "MAILGUN_PUBLIC_API_KEY",
+    "MAILGUN_WEBHOOK_SIGNING_KEY",
+    "NEXT_PUBLIC_GA_TRACKING_ID",
+    "COREPACK_ENABLE_STRICT",
+    "SECRET_KEY",
+    "SMTP_BCC_ADDRESS",
+    "SMTP_PASSWORD",
+    "SMTP_RECIPIENT_ADDRESS",
+    "SMTP_SENDER_ADDRESS",
+    "SMTP_USERNAME",
+    "WORDPRESS_API_URL",
+    "WORDPRESS_API_URL_YML",
+    "WORDPRESS_AUTH_AUTH_TOKEN",
+    "WORDPRESS_AUTH_REFRESH_TOKEN",
+    "WORDPRESS_AUTH_REFRESH_TOKEN_YML",
+    "WORDPRESS_PREVIEW_SECRET",
+    "WORDPRESS_URL",
+    "MY_GITHUB_PAT",
+    "GA_PROTOCOL_API_SECRET",
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID",
+    "NEXT_PUBLIC_GA_PROTOCOL_SECRET",
+    "NEXT_PUBLIC_GA_STREAM_ID",
+    "NEXT_PUBLIC_VERCEL_ENV",
+    "NEXT_PUBLIC_VERCEL_GIT_PROVIDER",
+    "NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER",
+    "NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG",
+    "NEXT_PUBLIC_VERCEL_URL",
+    "NPM_RC",
+    "npm_config_user_agent",
+    "NO_COLOR",
+    "NODE_ENV",
+    "NPM_TOKEN",
+    "PORT",
+    "REGION",
+    "VERCEL_ENV",
+    "VERCEL_GIT_PROVIDER",
+    "VERCEL_GIT_REPO_OWNER",
+    "VERCEL_GIT_REPO_SLUG",
+    "VERCEL_URL"
+  ]
+}
+

@@ -1,0 +1,37 @@
+{
+  "name": "@turbogen/eslint-config",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./base": "./base.js",
+    "./next": "./next.js",
+    "./react": "./react.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo node_modules",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@eslint/compat": "^1.2.3",
+    "@next/eslint-plugin-next": "latest",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-turbo": "latest",
+    "typescript-eslint": "latest"
+  },
+  "devDependencies": {
+    "@turbogen/prettier-config": "workspace:*",
+    "@turbogen/tsconfig": "workspace:*",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.15.0",
+    "prettier": "^3.3.3",
+    "typescript": "latest"
+  },
+  "prettier": "@turbogen/prettier-config"
+}

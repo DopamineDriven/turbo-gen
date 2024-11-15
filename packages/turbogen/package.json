@@ -1,0 +1,102 @@
+{
+  "name": "@turbogen/turbogen",
+  "version": "0.1.0",
+  "description": "rapidly generate a tooling-configured pnpm turborepo via the cli",
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/*.d.ts",
+          "dist/*/index.d.ts"
+        ],
+        "bin": [
+          "dist/bin/init.d.ts"
+        ],
+        "config": [
+          "dist/config/index.d.ts"
+        ],
+        "types": [
+          "dist/types/index.d.ts"
+        ]
+      }
+    }
+  },
+  "license": "MIT",
+  "source": "src/index.ts",
+  "bin": {
+    "tdturbo": "dist/bin/init.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*.d.ts",
+        "dist/*/index.d.ts"
+      ],
+      "bin": [
+        "dist/bin/init.d.ts"
+      ],
+      "config": [
+        "dist/config/index.d.ts"
+      ],
+      "types": [
+        "dist/types/index.d.ts"
+      ]
+    }
+  },
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": true,
+  "files": [
+    "dist/**/*.{js,cjs,d.ts,d.cts,css}"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*.js",
+    "./bin": "./dist/bin/init.js"
+  },
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsup",
+    "dev": "pnpm build",
+    "lint": "eslint",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "fix": "npm pkg fix"
+  },
+  "dependencies": {
+    "@inquirer/core": "^10.1.0",
+    "@inquirer/prompts": "^7.1.0",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "gradient-string": "^3.0.0"
+  },
+  "devDependencies": {
+    "@inquirer/type": "^3.0.1",
+    "@microsoft/api-extractor": "^7.47.11",
+    "@swc/core": "^1.9.2",
+    "@swc/wasm": "^1.9.2",
+    "@turbogen/eslint-config": "workspace:*",
+    "@turbogen/prettier-config": "workspace:*",
+    "@turbogen/tsconfig": "workspace:*",
+    "@types/gradient-string": "^1.1.6",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "chokidar": "^4.0.1",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "dotenv-expand": "^11.0.7",
+    "eslint": "^9.15.0",
+    "fast-xml-parser": "^4.5.0",
+    "next": "latest",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "terser": "^5.36.0",
+    "tslib": "^2.8.1",
+    "tsup": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "yaml": "^2.6.0"
+  },
+  "prettier": "@takeda-digital/prettier-config"
+}

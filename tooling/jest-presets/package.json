@@ -1,0 +1,27 @@
+{
+  "name": "@turbogen/jest-presets",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "clean": "git clean -xdf node_modules"
+  },
+  "files": [
+    "browser/jest-preset.js",
+    "node/jest-preset.js"
+  ],
+  "peerDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "ts-jest": "^29.2.5"
+  },
+  "devDependencies": {
+    "@turbogen/prettier-config": "workspace:*",
+    "@turbogen/tsconfig": "workspace:*",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.3.3",
+    "typescript": "latest"
+  },
+  "prettier": "@turbogen/prettier-config"
+}

@@ -1,0 +1,7 @@
+//registry.npmjs.org/:_authToken=
+//registry.npmjs.org/:_password=
+//registry.npmjs.org/:username=
+email=
+enable-pre-post-scripts=true
+node-linker=hoisted
+link-workspace-packages=true

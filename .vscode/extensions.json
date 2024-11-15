@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "meganrogge.template-string-converter",
+    "pflannery.vscode-versionlens",
+    "ms-vscode.vscode-typescript-next",
+    "donjayamanne.githistory",
+    "ipatalas.vscode-postfix-ts",
+    "prisma.prisma",
+    "abians.prisma-generate-uml"
+  ],
+  "unwantedRecommendations": []
+}
