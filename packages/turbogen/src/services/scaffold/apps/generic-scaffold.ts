@@ -1,6 +1,8 @@
 import { ConfigHandler } from "@/config/index.js";
 import { PromptPropsBase } from "@/types/index.js";
 
+/* eslint-disable no-useless-escape */
+
 export class WebAppScaffolder extends ConfigHandler {
   constructor(
     public override cwd: string,
@@ -787,10 +789,6 @@ export function omitFields<
 ` as const;
   }
 
-  private get T() {
-    let x = "";
-    return x;
-  }
   private get rootPageTsx() {
     // prettier-ignore
     return `import Image from "next/image";

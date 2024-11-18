@@ -3,18 +3,6 @@ export type PromptPropsBase = {
   readonly port: string;
 };
 
-export interface PromptProps extends PromptPropsBase {
-  readonly cloudinaryRootFolder: string;
-  readonly localUrl: string;
-  readonly previewUrl: string;
-  readonly prodUrl: string;
-  readonly description: string;
-  readonly title: string;
-  readonly auth: "AD" | "None" | "Okta";
-  readonly ga: string;
-  readonly appDirName: string;
-}
-
 export type BufferEncodingUnion =
   | "ascii"
   | "utf8"

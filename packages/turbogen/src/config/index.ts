@@ -18,14 +18,6 @@ dotenv.config();
 
 /* eslint-disable no-useless-escape */
 /* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable no-extra-boolean-cast */
-/* eslint-disable @typescript-eslint/prefer-for-of */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 export class ConfigHandler {
   constructor(public cwd: string) {}
@@ -54,7 +46,6 @@ export class ConfigHandler {
     // prettier-ignore
     return `enable-pre-post-scripts=true
 node-linker=hoisted
-link-workspace-packages=true
 email=
 
 
@@ -62,7 +53,7 @@ email=
 
 # //registry.npmjs.org/:_authToken=
 # //registry.npmjs.org/:_password=
-# //registry.npmjs.org/:username=`;
+# //registry.npmjs.org/:username=` as const;
   }
 
   public handleNpmrc() {

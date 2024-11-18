@@ -23,7 +23,7 @@ export class InquirerService extends ConfigHandler {
             return `workspace name must begin with a lowercase letter and only use a combination of dashes (-), lowercase letters, and numbers; invalid value of "${value}"`;
           }
           if (
-            /(\\|\*|\.|\/|\~|\!|\,|\#|\@|\$|\%|\^|\&|\(|\)|\_|\{|\}|\||\`|\[|\]|\>|\<|\+|\=|\;|\:|\"|\')/g.test(
+            /(\\|\*|\.|\/|~|!|,|#|@|\$|%|\^|&|\(|\)|_|\{|\}|\||`|\[|\]|>|<|\+|=|;|:|"|')/g.test(
               value
             ) === true
           ) {

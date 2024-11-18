@@ -17,15 +17,17 @@ export class EslintScaffolder extends ConfigHandler {
     // prettier-ignore
     return `/// <reference types="./types.d.ts" />
 
-import { relative } from "node:path";
+import { join, relative } from "node:path";
 import eslint from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
 
 const project = relative(process.cwd(), "tsconfig.json");
 
 export default tseslint.config(
+  includeIgnoreFile(join(import.meta.dirname, "../../.gitignore")),
   {
     // Globally ignored files
     ignores: [
@@ -85,14 +87,19 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-imports": "off",
       "no-unsafe-finally": "off",
       "@typescript-eslint/no-unnecessary-condition": "off",
-      "@next/next/no-page-custom-font": "off"
+      "@next/next/no-page-custom-font": "off",
+      // the following three rules are turned off due to existing errors eslint has when reading the source files
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/dot-notation": "off",
+      "@typescript-eslint/no-empty-function": "off"
     }
   },
   {
     linterOptions: { reportUnusedDisableDirectives: true },
-    languageOptions: { parserOptions: { project: project } }
+    languageOptions: { parserOptions: { project } }
   }
-);` as const;
+);
+` as const;
   }
 
   private get nextScaffold() {
@@ -162,14 +169,14 @@ export default [
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@eslint/compat": "latest",
+{
+    "@eslint/compat": "^1.1.1",
     "@next/eslint-plugin-next": "latest",
     "eslint-config-turbo": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jsx-a11y": "latest",
-    "eslint-plugin-react": "latest",
-    "eslint-plugin-react-hooks": "rc",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-turbo": "latest",
     "typescript-eslint": "latest"
   },
@@ -258,7 +265,8 @@ declare module "eslint-plugin-turbo" {
     recommended: { rules: Linter.RulesRecord };
   };
   export const rules: Record<string, Rule.RuleModule>;
-}` as const;
+}
+` as const;
   }
 
   private eslintPath<const F extends string>(file: F) {

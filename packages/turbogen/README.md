@@ -19,49 +19,21 @@ pnpm ddturbogen init
 Run `pnpm init` in a new repo and install the package. 
 
 
-```bash
-dopaminedriven@LAPTOP-2IH011V4:~/wcd/faderoom-github/faderoom$ pnpm install
-Packages: +44
-++++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 44, reused 43, downloaded 1, added 44, done
-
-devDependencies:
-+ @d0paminedriven/turbogen 0.1.0
-
-Done in 1.3s
-```
+![ddturbogen-install](./public/ddturbogen-install.png)
 
 
 Once installed, your `package.json` file should look similar to the following
 
-```json
-{
-  "name": "example-repo",
-  "version": "1.0.0",
-  "description": "",
-  "devDependencies": {
-    "@d0paminedriven/turbogen": "^0.1.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
 
-```
+![ddturbogen-package-json-before](./public/ddturbogen-package-json--before.png)
 
-Now run the `pnpm ddturbogen init` command (ddturbogen = dopamine driven turbogen 🌚)
+
+Now run the `pnpm ddturbogen init` command (ddturbogen is short for dopamine driven turbogen 🌚)
 
 There are two prompts to answer, shown below
 
-```bash
-dopaminedriven@LAPTOP-2IH011V4:~/wcd/faderoom-github/faderoom$ pnpm ddturbogen init
-~ Enter your desired workspace name (eg, acme for an `@acme/*` naming convention) faderoom
-~ Which port should be used for your nextjs web application? 3001
-```
 
+![ddturbogen-init](./public/ddturbogen-init.png)
 
 
 Once finished, your entire workspace is instantly generated, tooling is configured, and a web app is ready to go. Your locally installed version of pnpm is also parsed and included in your root `package.json` file
@@ -69,57 +41,7 @@ Once finished, your entire workspace is instantly generated, tooling is configur
 Now, your root `package.json` should look similar to the following
 
 
-```json
-{
-  "name": "@faderoom/root",
-  "license": "MIT",
-  "private": true,
-  "packageManager": "pnpm@9.13.2",
-  "scripts": {
-    "build:web": "turbo build --filter=@faderoom/web",
-    "changeset": "changeset",
-    "clean": "git clean -xdf node_modules",
-    "dev": "turbo dev --parallel --continue",
-    "format": "prettier --write \"**/*.{ts,tsx,cts,mts,js,jsx,mjs,cjs,json,yaml,yml,css,html,md,mdx}\" --ignore-unknown --cache",
-    "lint": "turbo lint",
-    "prepare": "husky",
-    "typecheck": "turbo typecheck",
-    "clean:house": "cd apps/web && git clean -xdf node_modules .next .turbo  && cd ../..tooling/eslint && git clean -xdf node_modules .turbo && cd ../prettier && git clean -xdf node_modules .turbo && cd ../typescript && git clean -xdf .turbo node_modules && cd ../jest-presets && git clean -xdf node_modules .turbo && cd ../.. && git clean -xdf node_modules pnpm-lock.yaml && pnpm install",
-    "generate:base64": "openssl rand -base64 64",
-    "generate:hex": "openssl rand -hex 64",
-    "npm:registry": "npm set registry https://registry.npmjs.org",
-    "run:web": "turbo dev --filter=@faderoom/web",
-    "sync:time": "sudo ntpdate time.windows.com",
-    "latest:pnpm": "corepack use pnpm@latest",
-    "update:pnpm": "curl -fsSL https://get.pnpm.io/install.sh | sh -"
-  },
-  "devDependencies": {
-    "@changesets/cli": "latest",
-    "@faderoom/eslint-config": "workspace:*",
-    "@faderoom/prettier-config": "workspace:*",
-    "@faderoom/tsconfig": "workspace:*",
-    "@d0paminedriven/turbogen": "latest",
-    "@total-typescript/ts-reset": "latest",
-    "@types/node": "latest",
-    "dotenv": "latest",
-    "dotenv-cli": "latest",
-    "dotenv-expand": "latest",
-    "eslint": "latest",
-    "husky": "latest",
-    "prettier": "latest",
-    "tsx": "latest",
-    "turbo": "latest",
-    "typescript": "latest",
-    "vercel": "latest"
-  },
-  "prettier": "@faderoom/prettier-config",
-  "engines": {
-    "node": ">=20",
-    "npm": ">=10",
-    "pnpm": ">=9"
-  }
-}
-```
+![package-json-after](./public/ddturbogen-package-json-after.png)
 
 ### An important Final step -- run install again from the root
 

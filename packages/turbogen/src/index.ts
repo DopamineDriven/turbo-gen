@@ -45,7 +45,6 @@ export type {
   OpenMode,
   ProcessEnv,
   ProcessEnvOptions,
-  PromptProps,
   PromptPropsBase,
   ReadDirOptions,
   ReadDirProps,
