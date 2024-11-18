@@ -1,6 +1,6 @@
 {
-  "name": "@d0paminedriven/turbogen",
-  "version": "0.5.0",
+  "name": "@turbogen/turbogen",
+  "version": "0.6.0",
   "description": "rapidly generate a tooling-configured pnpm turborepo via the cli",
   "publishConfig": {
     "access": "public",

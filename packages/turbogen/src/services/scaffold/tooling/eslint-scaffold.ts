@@ -169,7 +169,7 @@ export default [
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "tsc --noEmit"
   },
-{
+  "dependencies": {
     "@eslint/compat": "^1.1.1",
     "@next/eslint-plugin-next": "latest",
     "eslint-config-turbo": "latest",
