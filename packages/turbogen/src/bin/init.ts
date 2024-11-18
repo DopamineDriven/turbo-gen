@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import * as inquirer from "@inquirer/prompts";
-import type { PromptPropsBase } from "@/types/index.js";
 import { ConfigHandler } from "@/config/index.js";
 import { cliService } from "@/services/cli/index.js";
 import { scaffoldService } from "@/services/scaffold/index.js";
@@ -21,20 +20,6 @@ export async function testArgs(argv: string[]) {
   return;
 }
 
-export async function xrWorkspace(obj: PromptPropsBase) {
-  const { i } = cliService(process.cwd(), inquirer.select, inquirer.input);
-  const configWorkup = await i.executeConditional(obj);
-
-  try {
-    return [
-      i.templatedYaml(configWorkup),
-      i.handleAuthProvider(configWorkup)
-    ] as const;
-  } catch (err) {
-    console.error(typeof err === "string" ? err : JSON.stringify(err, null, 2));
-  }
-}
-
 if (process.argv[2] === "test") {
   Promise.all([testArgs(process.argv)]);
 }
@@ -42,7 +27,7 @@ if (process.argv[2] === "test") {
 if (process.argv[2] === "init") {
   Promise.all([
     testInquirer().then(async v => {
-      const { xr, eslint, jest, prettier, root, typescript } = scaffoldService(
+      const { eslint, jest, prettier, root, typescript, web } = scaffoldService(
         process.cwd(),
         v
       );
@@ -51,24 +36,7 @@ if (process.argv[2] === "init") {
       prettier.exePrettier();
       typescript.exeTs();
       root.exeRoot();
-      if (v.isXr === true) {
-        return await xrWorkspace(v).then(async data => {
-          if (data) {
-            return xr.exeXrApp(data[0], data[1]);
-          } else {
-            const { i } = cliService(
-              process.cwd(),
-              inquirer.select,
-              inquirer.input
-            );
-            const configWorkup = await i.executeConditional(v);
-            return xr.exeXrApp(
-              i.templatedYaml(configWorkup),
-              i.handleAuthProvider(configWorkup)
-            );
-          }
-        });
-      }
+      web.exeWebApp();
       return v;
     })
   ]);

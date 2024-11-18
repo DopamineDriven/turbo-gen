@@ -1,5 +1,5 @@
 export { ConfigHandler } from "./config/index.js";
-export { testArgs, testInquirer, xrWorkspace } from "./bin/init.js";
+export { testArgs, testInquirer } from "./bin/init.js";
 export { cliService } from "./services/cli/index.js";
 export { InquirerService } from "./services/cli/inquirer.js";
 export { EslintScaffolder } from "./services/scaffold/tooling/eslint-scaffold.js";
@@ -8,7 +8,7 @@ export { PrettierScaffolder } from "./services/scaffold/tooling/prettier-scaffol
 export { RootScaffolder } from "./services/scaffold/root/root-scaffolder.js";
 export { scaffoldService } from "./services/scaffold/index.js";
 export { TsScaffolder } from "./services/scaffold/tooling/ts-scaffold.js";
-export { XrAppScaffolder } from "./services/scaffold/apps/xr-scaffold.js";
+export { WebAppScaffolder } from "./services/scaffold/apps/generic-scaffold.js";
 export type { CliServiceProps } from "./services/cli/index.js";
 export type { ScaffoldServiceProps } from "./services/scaffold/index.js";
 export type {

@@ -36,7 +36,7 @@ export class RootScaffolder extends ConfigHandler {
 
   private get packageManager() {
     if (process.env.npm_config_user_agent) {
-      return `pnpm@${/pnpm\/([0-9].[0-9].[0-9])/g.exec(process.env.npm_config_user_agent)?.[1]}` as const;
+      return `pnpm@${/pnpm\/([0-9]+.[0-9]+.[0-9]+)/g.exec(process.env.npm_config_user_agent)?.[1]}` as const;
     } else return `pnpm` as const;
   }
 
@@ -50,15 +50,8 @@ export class RootScaffolder extends ConfigHandler {
   "license": "MIT",
   "private": true,
   "packageManager": "${this.packageManager}",
-  "workspaces": [
-    "apps/*",
-    "tooling/*"
-  ],
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://takedaawsuseast.jfrog.io/artifactory/api/npm/exp-npm-local/"
-  },
   "scripts": {
+    "build:web": "turbo build --filter=@${this.workspace}/web",
     "changeset": "changeset",
     "clean": "git clean -xdf node_modules",
     "dev": "turbo dev --parallel --continue",
@@ -66,17 +59,12 @@ export class RootScaffolder extends ConfigHandler {
     "lint": "turbo lint",
     "prepare": "husky",
     "typecheck": "turbo typecheck",
-    "build:xr": "turbo build --filter=@${this.workspace}/xr",
-    "clean:house": "cd apps/xr && rm -rf node_modules .turbo .next && cd ../../tooling/eslint && rm -rf node_modules .turbo && cd ../prettier && rm -rf node_modules .turbo && cd ../typescript && rm -rf .turbo node_modules && cd ../jest-presets && rm -rf node_modules .turbo && cd ../.. && rm -rf node_modules pnpm-lock.yaml && pnpm install",
+    "npm:registry": "npm set registry https://registry.npmjs.org",
+    "clean:house": "cd apps/web && git clean -xdf node_modules .next .turbo && cd ../..tooling/eslint && git clean -xdf node_modules .turbo && cd ../prettier && git clean -xdf node_modules .turbo && cd ../typescript && git clean -xdf .turbo node_modules && cd ../jest-presets && git clean -xdf node_modules .turbo && cd ../.. && git clean -xdf node_modules pnpm-lock.yaml && pnpm install",
     "generate:base64": "openssl rand -base64 64",
     "generate:hex": "openssl rand -hex 64",
-    "jfrog:registry": "npm config set @${this.workspace}:registry https://takedaawsuseast.jfrog.io/artifactory/api/npm/exp-npm-local/",
-    "npm:registry": "npm set registry https://registry.npmjs.org",
-    "run:xr": "turbo dev --filter=@${this.workspace}/xr",
+    "run:web": "turbo dev --filter=@${this.workspace}/web",
     "sync:time": "sudo ntpdate time.windows.com",
-    "turbo:login": "turbo login --sso-team=takeda",
-    "turbo:logout": "turbo logout",
-    "turbo:link": "turbo link",
     "latest:pnpm": "corepack use pnpm@latest",
     "update:pnpm": "curl -fsSL https://get.pnpm.io/install.sh | sh -"
   },
@@ -103,7 +91,7 @@ export class RootScaffolder extends ConfigHandler {
   "engines": {
     "node": ">=20",
     "npm": ">=10",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   }
 }
 `  as const
@@ -114,15 +102,8 @@ export class RootScaffolder extends ConfigHandler {
   "license": "MIT",
   "private": true,
   "packageManager": "${this.packageManager}",
-  "workspaces": [
-    "apps/*",
-    "tooling/*"
-  ],
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://takedaawsuseast.jfrog.io/artifactory/api/npm/exp-npm-local/"
-  },
   "scripts": {
+    "build:web": "turbo build --filter=@${this.workspace}/web",
     "changeset": "changeset",
     "clean": "git clean -xdf node_modules",
     "dev": "turbo dev --parallel --continue",
@@ -130,17 +111,12 @@ export class RootScaffolder extends ConfigHandler {
     "lint": "turbo lint",
     "prepare": "husky",
     "typecheck": "turbo typecheck",
-    "build:xr": "turbo build --filter=@${this.workspace}/xr",
-    "clean:house": "cd apps/xr && rm -rf node_modules .turbo .next && cd ../../tooling/eslint && rm -rf node_modules .turbo && cd ../prettier && rm -rf node_modules .turbo && cd ../typescript && rm -rf .turbo node_modules && cd ../jest-presets && rm -rf node_modules .turbo && cd ../.. && rm -rf node_modules pnpm-lock.yaml && pnpm install",
+    "clean:house": "cd tooling/eslint && git clean -xdf node_modules .turbo && cd ../prettier && git clean -xdf node_modules .turbo && cd ../typescript && git clean -xdf .turbo node_modules && cd ../jest-presets && git clean -xdf node_modules .turbo && cd ../.. && git clean -xdf node_modules pnpm-lock.yaml && pnpm install",
     "generate:base64": "openssl rand -base64 64",
     "generate:hex": "openssl rand -hex 64",
-    "jfrog:registry": "npm config set @${this.workspace}:registry https://takedaawsuseast.jfrog.io/artifactory/api/npm/exp-npm-local/",
     "npm:registry": "npm set registry https://registry.npmjs.org",
-    "run:xr": "turbo dev --filter=@${this.workspace}/xr",
+    "run:web": "turbo dev --filter=@${this.workspace}/web",
     "sync:time": "sudo ntpdate time.windows.com",
-    "turbo:login": "turbo login --sso-team=takeda",
-    "turbo:logout": "turbo logout",
-    "turbo:link": "turbo link",
     "latest:pnpm": "corepack use pnpm@latest",
     "update:pnpm": "curl -fsSL https://get.pnpm.io/install.sh | sh -"
   },
@@ -167,7 +143,7 @@ export class RootScaffolder extends ConfigHandler {
   "engines": {
     "node": ">=20",
     "npm": ">=10",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   }
 }
 ` as const
@@ -369,45 +345,24 @@ max_line_length = 40
   "globalEnv": [
     "__NEXT_PROCESSED_ENV",
     "AUTH_TOKEN",
-    "AZURE_AD_CLIENT_ID",
-    "AZURE_AD_CLIENT_SECRET",
-    "AZURE_AD_TENANT_ID",
     "CI_ENV",
-    "CLOUDINARY_API_KEY",
-    "CLOUDINARY_API_SECRET",
-    "CLOUDINARY_CLOUD_NAME",
-    "CLOUDINARY_URL",
     "COREPACK_ENABLE_STRICT",
-    "DOTENV_KEY",
     "GA_MEASUREMENT_ID",
     "GA_PROTOCOL_SECRET",
     "GA_STREAM_ID",
     "GITHUB_PAT",
     "MY_GITHUB_PAT",
     "NEXTAUTH_SECRET",
-    "NEXT_PUBLIC_CLOUDINARY_API_KEY",
-    "NEXT_PUBLIC_CLOUDINARY_API_SECRET",
-    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME",
     "NEXT_PUBLIC_GA_MEASUREMENT_ID",
     "NEXT_PUBLIC_MEASUREMENT_PROTOCOL_SECRET",
     "NEXT_PUBLIC_GA_PROTOCOL_SECRET",
     "NEXT_PUBLIC_GA_STREAM_ID",
-    "NEXT_PUBLIC_VERCEL_ENV",
-    "NEXT_PUBLIC_VERCEL_GIT_PROVIDER",
-    "NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER",
-    "NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG",
-    "NEXT_PUBLIC_VERCEL_URL",
     "NPM_RC",
     "npm_config_user_agent",
     "NO_COLOR",
     "NODE_ENV",
     "NPM_TOKEN",
-    "OKTA_CLIENT_ID",
-    "OKTA_CLIENT_SECRET",
-    "OKTA_ISSUER",
-    "OKTA_REDIRECT",
     "PORT",
-    "SECRET",
     "VERCEL_ENV",
     "VERCEL_GIT_PROVIDER",
     "VERCEL_GIT_REPO_OWNER",
@@ -422,6 +377,7 @@ max_line_length = 40
     // prettier-ignore
     return `packages:
   - "apps/*"
+  - "packages/*"
   - "tooling/*"` as const;
   }
 
@@ -458,7 +414,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-.env.takeda
 # turbo
 .turbo
 .vercel

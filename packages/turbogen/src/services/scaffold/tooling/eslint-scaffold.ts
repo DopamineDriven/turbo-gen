@@ -32,7 +32,8 @@ export default tseslint.config(
       "**/*.config.js",
       "**/*.config.mjs",
       "**/*.config.cjs",
-      "**/*.config.ts",
+      "tailwind.config.ts",
+      "tsup.config.ts",
       "**/*.presets.cjs"
     ]
   },
@@ -52,10 +53,11 @@ export default tseslint.config(
       turbo: turboPlugin
     },
     ignores: [
+      "tailwind.config.ts",
+      "tsup.config.ts",
       "**/*.config.mjs",
       "**/*.config.js",
       "**/*.config.cjs",
-      "**/*.config.ts",
       "**/*.presets.cjs"
     ],
     extends: [
@@ -90,8 +92,7 @@ export default tseslint.config(
     linterOptions: { reportUnusedDisableDirectives: true },
     languageOptions: { parserOptions: { project: project } }
   }
-);
-` as const;
+);` as const;
   }
 
   private get nextScaffold() {
@@ -113,8 +114,7 @@ export default [
       "import/no-default-export": "off"
     }
   }
-];
-` as const;
+];` as const;
   }
 
   private get reactScaffold() {
@@ -198,13 +198,7 @@ export default [
 
   private get dtsScaffold() {
     // prettier-ignore
-    return `/**
- * Most packages haven't fully migrated to the new
- * FlatConfig system yet (eslint >=v9); typing plugins
- * manually is a temporary albeit necessary workaround
- */
-
-declare module "@eslint/js" {
+    return `declare module "@eslint/js" {
   import type { Linter } from "eslint";
 
   export const configs: {
@@ -264,15 +258,14 @@ declare module "eslint-plugin-turbo" {
     recommended: { rules: Linter.RulesRecord };
   };
   export const rules: Record<string, Rule.RuleModule>;
-}
-  ` as const;
+}` as const;
   }
 
   private eslintPath<const F extends string>(file: F) {
     return `tooling/eslint/${file}` as const;
   }
 
-  private getPaths() {
+  private get getPaths() {
     return {
       base: this.eslintPath("base.js"),
       next: this.eslintPath("next.js"),
@@ -283,10 +276,10 @@ declare module "eslint-plugin-turbo" {
     } as const;
   }
 
-  private eslintTarget<const V extends keyof ReturnType<typeof this.getPaths>>(
+  private eslintTarget<const V extends keyof typeof this.getPaths>(
     target: V
   ) {
-    return this.getPaths()[target];
+    return this.getPaths[target];
   }
 
   private writeTarget<

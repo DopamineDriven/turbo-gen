@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/compat": "^1.2.3",
+    "@eslint/compat": "^1.1.1",
     "@next/eslint-plugin-next": "latest",
     "eslint-config-turbo": "latest",
     "eslint-plugin-import": "^2.31.0",
@@ -28,7 +28,6 @@
   "devDependencies": {
     "@turbogen/prettier-config": "workspace:*",
     "@turbogen/tsconfig": "workspace:*",
-    "@types/eslint__js": "^8.42.3",
     "eslint": "^9.15.0",
     "prettier": "^3.3.3",
     "typescript": "latest"

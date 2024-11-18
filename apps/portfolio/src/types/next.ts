@@ -12,6 +12,19 @@ export type InferIt<T, V extends "RT" | "P" | "B"> = T extends (
         : T
   : T;
 
+
+/**
+ * usage with dynamic page routes in nextjs app directory
+ *
+ * ```tsx
+  export default async function DynamicPage({
+    params
+  }: InferGSPRT<typeof generateStaticParams>) {
+    // your code here
+  }
+  ```
+*/
+
 export type InferGSPRT<V extends (...args: any) => any> = {
   params: Promise<Unenumerate<InferIt<V, "RT">>>;
 };

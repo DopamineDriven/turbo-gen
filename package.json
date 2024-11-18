@@ -6,10 +6,16 @@
     "name": "Andrew Ross",
     "url": "https://github.com/DopamineDriven"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
   "license": "MIT",
   "private": true,
   "packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a",
   "scripts": {
+    "changeset": "changeset",
     "clean": "git clean -xdf node_modules",
     "dev": "turbo dev --parallel --continue",
     "flatten": "awk -v ORS='\\n' '1' flatten.js",
@@ -19,7 +25,8 @@
     "test": "echo \"Hello from GitHubCI\"",
     "typecheck": "turbo typecheck",
     "build:portfolio": "turbo build --filter=@turbogen/portfolio",
-    "clean:house": "cd apps/portfolio && git clean -xdf node_modules .next .turbo && cd ../../packages/turbogen && git clean -xdf node_modules dist .turbo && cd ../../tooling/eslint && git clean -xdf node_modules .turbo && cd ../prettier && git clean -xdf node_modules .turbo && cd ../typescript && git clean -xdf node_modules .turbo && cd ../jest-presets && git clean -xdf node_modules .turbo && cd ../.. && git clean -xdf node_modules pnpm-lock.yaml && pnpm latest:pnpm",
+    "build:turbogen": "turbo build --filter=@turbogen/turbogen",
+    "clean:house": "cd apps/portfolio && git clean -xdf node_modules .next .turbo && cd ../../packages/turbogen && git clean -xdf node_modules dist .turbo && cd ../../tooling/eslint && git clean -xdf node_modules .turbo && cd ../prettier && git clean -xdf node_modules .turbo && cd ../typescript && git clean -xdf node_modules .turbo && cd ../jest-presets && git clean -xdf node_modules .turbo && cd ../.. && git clean -xdf node_modules && git clean -xdf pnpm-lock.yaml && pnpm latest:pnpm && pnpm build:turbogen",
     "condense:privatekey": "awk -v ORS='\\n' '1' private.pem",
     "condense:publickey": "awk -v ORS='\\n' '1' public.pem",
     "generate:privatekey": "openssl genrsa -out private.pem 2048",
@@ -55,6 +62,7 @@
     "dotenv-expand": "^11.0.7",
     "eslint": "^9.15.0",
     "husky": "^9.1.6",
+    "jiti": "^2.4.0",
     "prettier": "^3.3.3",
     "tsx": "latest",
     "turbo": "latest",

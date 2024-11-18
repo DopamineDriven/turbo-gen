@@ -15,7 +15,19 @@ import {
 } from "@/typography";
 import "./global.css";
 import React from "react";
+import { Geist, Geist_Mono } from "next/font/google";
+/* populate relevant values in src/lib/site-url.ts and uncomment for url injetion */
+// import { getSiteUrl } from "@/lib/site-url";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"]
+});
 export const viewport = {
   themeColor: "#E1242A",
   userScalable: true,

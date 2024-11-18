@@ -31,8 +31,7 @@ const customGrays = {
 
 const config = {
   content: ["src/**/*.{js,ts,jsx,tsx}"],
-  // darkMode: ["class", 'html[class~="dark"]'],
-  darkMode: ["class", "class"],
+  darkMode: ["class", 'html[class~="dark"]'],
   future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {

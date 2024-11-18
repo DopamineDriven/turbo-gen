@@ -1,14 +1,16 @@
 /// <reference types="./types.d.ts" />
 
-import { relative } from "node:path";
+import { join, relative } from "node:path";
 import eslint from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
 
 const project = relative(process.cwd(), "tsconfig.json");
 
 export default tseslint.config(
+  includeIgnoreFile(join(import.meta.dirname, "../../.gitignore")),
   {
     // Globally ignored files
     ignores: [
@@ -68,11 +70,14 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-imports": "off",
       "no-unsafe-finally": "off",
       "@typescript-eslint/no-unnecessary-condition": "off",
-      "@next/next/no-page-custom-font": "off"
+      "@next/next/no-page-custom-font": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/dot-notation": "off",
+      "@typescript-eslint/no-empty-function": "off"
     }
   },
   {
     linterOptions: { reportUnusedDisableDirectives: true },
-    languageOptions: { parserOptions: { project: project } }
+    languageOptions: { parserOptions: { project } }
   }
 );

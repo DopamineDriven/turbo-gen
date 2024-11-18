@@ -1,6 +1,6 @@
 export type PromptPropsBase = {
   readonly workspace: string;
-  readonly isXr: boolean;
+  readonly port: string;
 };
 
 export interface PromptProps extends PromptPropsBase {

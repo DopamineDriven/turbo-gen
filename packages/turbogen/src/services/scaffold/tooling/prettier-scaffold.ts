@@ -44,7 +44,7 @@ const config = {
     "decorators-legacy",
     "importAttributes"
   ],
-  importOrderTypeScriptVersion: "5.4.5",
+  importOrderTypeScriptVersion: "5.6.3",
   semi: true,
   singleQuote: false,
   trailingComma: "none",
@@ -52,7 +52,7 @@ const config = {
   useTabs: false,
   tabWidth: 2,
   bracketSameLine: true,
-  jsxSingleQuote: true,
+  jsxSingleQuote: false,
   bracketSpacing: true,
   quoteProps: "as-needed",
   printWidth: 80
@@ -73,7 +73,7 @@ export default config;
     ".": "./index.js"
   },
   "scripts": {
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "git clean -xdf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "tsc --noEmit"
   },
@@ -107,7 +107,7 @@ export default config;
     return `tooling/prettier/${file}` as const;
   }
 
-  private getPaths() {
+  private get getPaths() {
     return {
       index: this.prettierPath("index.js"),
       packageJson: this.prettierPath("package.json"),
@@ -115,10 +115,10 @@ export default config;
     } as const;
   }
 
-  private prettierTarget<
-    const V extends keyof ReturnType<typeof this.getPaths>
-  >(target: V) {
-    return this.getPaths()[target];
+  private prettierTarget<const V extends keyof typeof this.getPaths>(
+    target: V
+  ) {
+    return this.getPaths[target];
   }
 
   private writeTarget<

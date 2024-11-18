@@ -75,6 +75,9 @@ module.exports = {
     "browser/jest-preset.js",
     "node/jest-preset.js"
   ],
+  "scripts": {
+    "clean": "git clean -xdf node_modules"
+  },
   "peerDependencies": {
     "jest": "latest"
   },
@@ -110,7 +113,7 @@ module.exports = {
     return `tooling/jest-presets/${file}` as const;
   }
 
-  private getPaths() {
+  private get getPaths() {
     return {
       browser: this.jestPath("browser/jest-preset.js"),
       node: this.jestPath("node/jest-preset.js"),
@@ -120,9 +123,9 @@ module.exports = {
   }
 
   private jestPresetsTarget<
-    const V extends keyof ReturnType<typeof this.getPaths>
+    const V extends keyof typeof this.getPaths
   >(target: V) {
-    return this.getPaths()[target];
+    return this.getPaths[target];
   }
 
   private writeTarget<

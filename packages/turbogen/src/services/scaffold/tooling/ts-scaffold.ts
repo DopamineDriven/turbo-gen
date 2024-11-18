@@ -155,6 +155,32 @@ export class TsScaffolder extends ConfigHandler {
 ` as const;
   }
 
+  private get cliPkgTemplate() {
+    // prettier-ignore
+    return `{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "alwaysStrict": true,
+    "module": "Node16",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "incremental": false,
+    "sourceMap": true,
+    "useDefineForClassFields": true,
+    "disableSourceOfProjectReferenceRedirect": false,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true,
+    "importHelpers": false,
+    "baseUrl": "./",
+    "noEmit": true
+  }
+}
+` as const;
+  }
+
   private get pkgJsonTemplate() {
     // prettier-ignore
     return `{
@@ -180,7 +206,8 @@ export class TsScaffolder extends ConfigHandler {
       next: this.tsPath("next.json"),
       nodePkg: this.tsPath("node-pkg.json"),
       packageJson: this.tsPath("package.json"),
-      reactLib: this.tsPath("react-library.json")
+      reactLib: this.tsPath("react-library.json"),
+      cliPkg: this.tsPath("cli-pkg.json")
     } as const;
   }
 
@@ -203,6 +230,7 @@ export class TsScaffolder extends ConfigHandler {
 
   public exeTs() {
     return Promise.all([
+      this.writeTarget("tooling/typescript/cli-pkg.json", this.cliPkgTemplate),
       this.writeTarget("tooling/typescript/base.json", this.baseTemplate),
       this.writeTarget("tooling/typescript/express.json", this.expressTemplate),
       this.writeTarget(

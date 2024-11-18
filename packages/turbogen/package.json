@@ -1,6 +1,6 @@
 {
   "name": "@turbogen/turbogen",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "rapidly generate a tooling-configured pnpm turborepo via the cli",
   "publishConfig": {
     "access": "public",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "source": "src/index.ts",
   "bin": {
-    "tdturbo": "dist/bin/init.js"
+    "ddturbogen": "dist/bin/init.js"
   },
   "typesVersions": {
     "*": {

@@ -1,5 +1,5 @@
 import type { PromptPropsBase } from "@/types/index.js";
-import { XrAppScaffolder } from "./apps/xr-scaffold.js";
+import { WebAppScaffolder } from "./apps/generic-scaffold.js";
 import { RootScaffolder } from "./root/root-scaffolder.js";
 import { EslintScaffolder } from "./tooling/eslint-scaffold.js";
 import { JestScaffolder } from "./tooling/jest-scaffold.js";
@@ -12,7 +12,7 @@ export interface ScaffoldServiceProps {
   prettier: PrettierScaffolder;
   root: RootScaffolder;
   typescript: TsScaffolder;
-  xr: XrAppScaffolder;
+    web: WebAppScaffolder;
 }
 
 export function scaffoldService(cwd: string, promptBase: PromptPropsBase) {
@@ -22,6 +22,6 @@ export function scaffoldService(cwd: string, promptBase: PromptPropsBase) {
     prettier: new PrettierScaffolder(cwd, promptBase),
     root: new RootScaffolder(cwd, promptBase),
     typescript: new TsScaffolder(cwd, promptBase),
-    xr: new XrAppScaffolder(cwd, promptBase)
+    web: new WebAppScaffolder(cwd, promptBase)
   };
 }

@@ -25,6 +25,7 @@
   "editor.suggest.showStatusBar": true,
   "eslint.enable": true,
   "eslint.useFlatConfig": true,
+  "eslint.debug": true,
   "eslint.rules.customizations": [
     {
       "rule": "*",
@@ -32,9 +33,6 @@
     }
   ],
   "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    },
     {
       "pattern": "apps/*/"
     },
