@@ -19,13 +19,13 @@ pnpm ddturbogen init
 Run `pnpm init` in a new repo and install the package. 
 
 
-![ddturbogen-install](./public/ddturbogen-install.png)
+![ddturbogen-install](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z1bvwf0w1iovvftgswqc.png)
 
 
 Once installed, your `package.json` file should look similar to the following
 
 
-![ddturbogen-package-json-before](./public/ddturbogen-package-json--before.png)
+![ddturbogen-package-json-before](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4wwtsiaxo7c24kui4wvh.png)
 
 
 Now run the `pnpm ddturbogen init` command (ddturbogen is short for dopamine driven turbogen 🌚)
@@ -33,7 +33,7 @@ Now run the `pnpm ddturbogen init` command (ddturbogen is short for dopamine dri
 There are two prompts to answer, shown below
 
 
-![ddturbogen-init](./public/ddturbogen-init.png)
+![ddturbogen-init](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3qquxs1n9azd5mmhqfun.png)
 
 
 Once finished, your entire workspace is instantly generated, tooling is configured, and a web app is ready to go. Your locally installed version of pnpm is also parsed and included in your root `package.json` file
@@ -41,7 +41,7 @@ Once finished, your entire workspace is instantly generated, tooling is configur
 Now, your root `package.json` should look similar to the following
 
 
-![package-json-after](./public/ddturbogen-package-json-after.png)
+![package-json-after](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r8yb6shzsd8iuq2dghgp.png)
 
 ### An important Final step -- run install again from the root
 
